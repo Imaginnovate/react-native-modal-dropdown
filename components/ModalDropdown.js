@@ -19,6 +19,7 @@ import {
   TouchableHighlight,
   Modal,
   ActivityIndicator,
+  Keyboard
 } from 'react-native';
 
 import ListView from "deprecated-react-native-listview";
@@ -43,6 +44,7 @@ export default class ModalDropdown extends Component {
     animated: PropTypes.bool,
     showsVerticalScrollIndicator: PropTypes.bool,
     keyboardShouldPersistTaps: PropTypes.string,
+    isKeyBoard: PropTypes.bool,
 
     style: PropTypes.oneOfType([PropTypes.number, PropTypes.object, PropTypes.array]),
     textStyle: PropTypes.oneOfType([PropTypes.number, PropTypes.object, PropTypes.array]),
@@ -109,6 +111,15 @@ export default class ModalDropdown extends Component {
     });
   }
 
+  delayModalrender = () => {
+    const {buttonText} = this.props;
+    setTimeout(() => {
+      this.setState({
+        buttonText: props.defaultValue,
+      }, 0);
+    });
+  }
+
   render() {
     return (
       <View {...this.props}>
@@ -128,13 +139,15 @@ export default class ModalDropdown extends Component {
   }
 
   show() {
+    const {isKeyBoard} = this.props;
+    const delayTime = isKeyBoard ? 300 : 0
     setTimeout(() => {
     this._updatePosition(() => {
       this.setState({
         showDropdown: true
       });
     });
-  }, 900);
+  }, delayTime);
   }
 
   hide() {
