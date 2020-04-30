@@ -19,7 +19,8 @@ import {
   TouchableHighlight,
   Modal,
   ActivityIndicator,
-  Keyboard
+  Keyboard,
+  Platform,
 } from 'react-native';
 
 import ListView from "deprecated-react-native-listview";
@@ -129,13 +130,14 @@ export default class ModalDropdown extends Component {
   }
 
   show() {
+    const delayTime = Platform.OS === 'android'? 200:400;
     setTimeout(() => {
     this._updatePosition(() => {
       this.setState({
         showDropdown: true
       });
     });
-  }, 400);
+  }, delayTime);
   }
 
   hide() {
