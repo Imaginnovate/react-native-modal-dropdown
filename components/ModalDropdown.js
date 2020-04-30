@@ -44,7 +44,6 @@ export default class ModalDropdown extends Component {
     animated: PropTypes.bool,
     showsVerticalScrollIndicator: PropTypes.bool,
     keyboardShouldPersistTaps: PropTypes.string,
-    isKeyBoard: PropTypes.bool,
 
     style: PropTypes.oneOfType([PropTypes.number, PropTypes.object, PropTypes.array]),
     textStyle: PropTypes.oneOfType([PropTypes.number, PropTypes.object, PropTypes.array]),
@@ -111,15 +110,6 @@ export default class ModalDropdown extends Component {
     });
   }
 
-  delayModalrender = () => {
-    const {buttonText} = this.props;
-    setTimeout(() => {
-      this.setState({
-        buttonText: props.defaultValue,
-      }, 0);
-    });
-  }
-
   render() {
     return (
       <View {...this.props}>
@@ -145,7 +135,7 @@ export default class ModalDropdown extends Component {
         showDropdown: true
       });
     });
-  }, 300);
+  }, 400);
   }
 
   hide() {
