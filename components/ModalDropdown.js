@@ -139,15 +139,13 @@ export default class ModalDropdown extends Component {
   }
 
   show() {
-    const {isKeyBoard} = this.props;
-    const delayTime = isKeyBoard ? 300 : 0
     setTimeout(() => {
     this._updatePosition(() => {
       this.setState({
         showDropdown: true
       });
     });
-  }, delayTime);
+  }, 300);
   }
 
   hide() {
