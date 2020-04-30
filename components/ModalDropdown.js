@@ -128,11 +128,13 @@ export default class ModalDropdown extends Component {
   }
 
   show() {
+    setTimeout(() => {
     this._updatePosition(() => {
       this.setState({
         showDropdown: true
       });
     });
+  }, 900);
   }
 
   hide() {
@@ -189,10 +191,12 @@ export default class ModalDropdown extends Component {
 
   _onButtonPress = () => {
     const {onDropdownWillShow} = this.props;
+    Keyboard.dismiss();
+    setTimeout(() => {
     if (!onDropdownWillShow ||
       onDropdownWillShow() !== false) {
       this.show();
-    }
+    }}, 10);
   };
 
   _renderModal() {
